@@ -468,15 +468,13 @@ class Editor extends JFrame implements ActionListener,DocumentListener
 
         //设置状态栏可见性
         else if(e.getSource()==viewMenu_Status)
-        { if(viewMenu_Status.getState())
-            statusLabel.setVisible(true);
-        else
-            statusLabel.setVisible(false);
+        {
+            View_fuc.view(viewMenu_Status, statusLabel);
         }//设置状态栏可见性结束
         //帮助主题
         else if(e.getSource()==helpMenu_AboutNotepad)
         {
-            View_fuc.about(this, editArea);
+            Help_fuc.about(this, editArea);
         }//帮助主题结束
         //关于
 
