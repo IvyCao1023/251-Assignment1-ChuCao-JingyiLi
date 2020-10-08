@@ -327,7 +327,17 @@ public class File_fuc {
             PrintService printService[] = PrintServiceLookup.lookupPrintServices(flavor, requ);
             PrintService dafaultService = PrintServiceLookup.lookupDefaultPrintService();
             PrintService service = ServiceUI.printDialog(null,200,200,printService,dafaultService,flavor,requ);
-
+            if(service != null){
+                try{
+                    DocPrintJob docPrintJob = service.createPrintJob();
+                    FileInputStream fileInputStream = new FileInputStream(file);
+                    DocAttributeSet docAttributeSet = new HashDocAttributeSet();
+                    Doc doc = new SimpleDoc(fileInputStream, flavor, docAttributeSet);
+                    docPrintJob.print(doc, requ);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (PrintException e) {
+                    e.printStackTrace();
                 }
             }
         }
